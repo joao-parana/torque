@@ -1,0 +1,35 @@
+sudo: required
+
+language: python
+
+services: 
+  - docker
+
+notifications:
+    email:
+        on_success: never
+        on_failure: always
+
+addons:
+    apt:
+        packages:
+            - curl
+            - openssh-client
+
+install:
+    - ssh-keygen -t rsa -f aiida_key -C "Key for torque SSH service" -N ''
+    - export THEKEY=`cat "aiida_key.pub"`
+    - docker build -t torquessh_base . 
+    - docker run -d --privileged -e AUTHORIZED_KEY="$THEKEY" -p 10022:22 torquessh_base
+    - docker ps 
+
+script:
+    - "misc/wait-for-it.sh localhost:10022 -t 120"
+    - "sleep 15"
+    - "ssh-keyscan -p 10022 localhost >> ~/.ssh/known_hosts"
+    - "scp -i aiida_key -P 10022 submission_test/example-submit.sh submission_test/check-completion.sh app@localhost:"
+    - "ssh -i aiida_key -p 10022 app@localhost 'qsub example-submit.sh'"
+    - "ssh -i aiida_key -p 10022 app@localhost './check-completion.sh'"
+
+
+
