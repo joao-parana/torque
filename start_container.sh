@@ -1,6 +1,6 @@
 #/bin/bash
 
-imagename=torquessh_base
+imagename=torque
 
 echo "I will start (run) a new container from image $imagename - press CTRL+C to stop, enter to continue"
 read
@@ -25,5 +25,5 @@ then
     exit 2
 fi
 
-docker run -P --privileged -e AUTHORIZED_KEY="$THEKEY" $imagename
+docker run -P --privileged -e AUTHORIZED_KEY="$THEKEY" parana/$imagename
 
