@@ -41,5 +41,6 @@ Beside the typical basic ubuntu system, and a SSH server, it contains:
 
 # Dockerfile repository
 
-`https://github.com/aiidateam/torquessh_base-docker`.
+The Dockerfile repository is [https://github.com/joao-parana/torque](https://github.com/joao-parana/torque)
+
 
