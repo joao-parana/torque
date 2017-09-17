@@ -1,7 +1,16 @@
 # Image for running simulations
 
+This image intall **torque-scheduler**, **torque-server**, **torque-mom** 
+and **torque-client** on **Ubuntu 16.04 LTS**
+
 This image has a basic environment with possibility to access
 via ssh to the user 'app', and a torque scheduler enabled.
+
+# How to build the image
+
+```bash
+docker build -t parana/torque .
+```
 
 # How to start
 

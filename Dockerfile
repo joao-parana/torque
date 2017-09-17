@@ -7,6 +7,8 @@
 ### Note! Torque-mom requires that 'ulimit -l unlimited' is set. To achieve
 ### This, you need to run this container with the '--privileged' option
 
+# Based on original image from AiiDA Team <info@aiida.net>
+
 # Use phusion/baseimage as base image. To make your builds
 # reproducible, make sure you lock down to a specific version, not
 # to `latest`! See
@@ -16,11 +18,10 @@
 # http://phusion.github.io/baseimage-docker/ page, it automatically
 # contains and starts all needed services (like logging), it
 # takes care of sending around signals when stopped, etc.
-FROM phusion/baseimage:0.9.19
-MAINTAINER AiiDA Team <info@aiida.net>
 
-# Use baseimage-docker's init system.
-CMD ["/sbin/my_init"]
+FROM phusion/baseimage:0.9.22
+
+MAINTAINER João Antonio Ferreira <joao.parana@>
 
 # Install required packages
 RUN apt-get update \ 
@@ -122,3 +123,5 @@ RUN mkdir -p /etc/service/torque_server && \
 COPY ./scripts/torque_server_run.sh /etc/service/torque_server/run
 COPY ./scripts/torque_mom_scheduler_run.sh /etc/service/torque_mom_scheduler/run
 
+# Use baseimage-docker's init system.
+CMD ["/sbin/my_init"]
