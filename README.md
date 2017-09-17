@@ -1,10 +1,10 @@
 # Image for running simulations
 
-This image intall **torque-scheduler**, **torque-server**, **torque-mom** 
-and **torque-client** on **Ubuntu 16.04 LTS**
+Project based on original image from AiiDA Team <info@aiida.net>
 
-This image has a basic environment with possibility to access
-via ssh to the user 'app', and a torque scheduler enabled.
+This image intall **torque-scheduler**, **torque-server**, **torque-mom** 
+and **torque-client** on **Ubuntu 16.04 LTS** and have a basic environment 
+with possibility to access via **ssh** to the user 'app', with a torque scheduler enabled.
 
 # How to build the image
 
@@ -15,6 +15,12 @@ docker build -t parana/torque .
 # How to start
 
 You can run the image with the script `./start_container.sh`.
+
+Example:
+
+```bash
+./start_container.sh /Users/parana/.ssh/id_rsa.pub
+```
 
 Some notes (already present in the `start_container.sh` script):
 

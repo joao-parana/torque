@@ -24,6 +24,12 @@ then
     echo "Malformed public key..."
     exit 2
 fi
-
+echo "••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• "
+echo "••• I will start the container. See the port binded to port 22 using the command: ••• "
+echo '••• docker ps | grep "parana/torque"                                              ••• '
+echo "••• This way you can SSH to container using a comand like this:                   ••• "
+echo "••• ssh -p 32768 app@localhost                                                    ••• "
+echo "••• In this example the port was 32768                                            ••• "
+echo "••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••• "
 docker run -P --privileged -e AUTHORIZED_KEY="$THEKEY" parana/$imagename
 
